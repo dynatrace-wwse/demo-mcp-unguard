@@ -13,6 +13,21 @@ customFunction(){
 
 }
 
+exposeUnguard(){
+  
+  getNextFreeAppPort true
+  PORT=$(getNextFreeAppPort)
+  if [[ $? -ne 0 ]]; then
+    printWarn "Application can't be deployed"
+    return 1
+  fi
+
+  #PORT=30100
+  kubectl patch service unguard-envoy-proxy --namespace=unguard --patch="{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 8080, \"nodePort\": $PORT }]}}"
+  #PORT2=30200
+  #kubectl patch service unguard-frontend --namespace=unguard --patch="{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 80, \"nodePort\": $PORT2 }]}}"
+}
+
 deployUnguard(){
   
   printInfoSection "Deploying Unguard $VERSION_UNGUARD"
@@ -24,10 +39,18 @@ deployUnguard(){
   helm repo add bitnami https://charts.bitnami.com/bitnami
 
   printInfo "Installing unguard-mariadb ..."
-  helm install unguard-mariadb bitnami/mariadb --version $UNGUARD_DB_VERSION --set primary.persistence.enabled=false --wait --namespace unguard --create-namespace
+  #helm install unguard-mariadb bitnami/mariadb --version 12.0.2 --set primary.persistence.enabled=false --wait --namespace unguard --create-namespace
+  helm install unguard-mariadb bitnami/mariadb \
+  --version 11.5.7 \
+  --set primary.persistence.enabled=false \
+  --set image.repository=bitnamilegacy/mariadb \
+  --namespace unguard --create-namespace
 
+  
   printInfo "Installing Unguard"
   helm install unguard  oci://ghcr.io/dynatrace-oss/unguard/chart/unguard --wait --namespace unguard --create-namespace
-
+  exposeUnguard
 
 }
+
+
