@@ -15,7 +15,7 @@ installK9s
 
 
 # Dynatrace Operator can be deployed automatically
-#dynatraceDeployOperator
+dynatraceDeployOperator
 
 # You can deploy CNFS or AppOnly
 #deployCloudNative
@@ -23,12 +23,9 @@ installK9s
 
 # In here you deploy the Application you want
 # The TODO App will be deployed as a sample
-deployTodoApp
+#deployTodoApp
 
 # The Astroshop keeping changes of demo.live needs certmanagerdocker
-#certmanagerInstall
-#certmanagerEnable
-#deployAstroshop
 
 # If you want to deploy your own App, just create a function in the functions.sh file and call it here.
 # deployMyCustomApp

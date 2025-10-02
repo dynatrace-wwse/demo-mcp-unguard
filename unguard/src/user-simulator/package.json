@@ -1,0 +1,29 @@
+{
+    "name": "user-simulator",
+    "version": "1.0.0",
+    "description": "Simulates a real browser unguard user.",
+    "scripts": {
+        "build": "tsc",
+        "start": "node default-user-sim.perf.js"
+    },
+    "type": "module",
+    "private": true,
+    "prettier": {
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "printWidth": 100,
+        "useTabs": true,
+        "tabWidth": 2,
+        "bracketSpacing": true,
+        "jsxBracketSameLine": true,
+        "arrowParens": "avoid"
+    },
+    "dependencies": {
+        "prettier": "^2.8.3",
+        "puppeteer": "24.11.2"
+    },
+    "devDependencies": {
+        "typescript": "5.4.5"
+    }
+}

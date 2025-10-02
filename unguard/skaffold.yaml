@@ -1,0 +1,169 @@
+# Copyright 2023 Dynatrace LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: unguard
+build:
+  artifacts:
+    # context is the directory with the Dockerfile for that image
+    - image: unguard-envoy-proxy
+      context: src/envoy-proxy
+    - image: unguard-frontend
+      context: src/frontend-nextjs
+    - image: unguard-microblog-service # adapt jib patch index below if you move this item
+      context: src/microblog-service
+    - image: unguard-proxy-service
+      context: src/proxy-service
+    - image: unguard-user-simulator
+      context: src/user-simulator
+    - image: unguard-user-auth-service
+      context: src/user-auth-service
+    - image: unguard-ad-service
+      context: src/ad-service
+    - image: unguard-membership-service
+      context: src/membership-service
+    - image: unguard-malicious-load-generator
+      context: src/malicious-load-generator
+    - image: unguard-status-service
+      context: src/status-service
+    - image: unguard-profile-service
+      context: src/profile-service
+    - image: unguard-like-service
+      context: src/like-service
+    - image: unguard-payment-service
+      context: src/payment-service
+    - image: unguard-exploit-toolkit
+      context: exploit-toolkit
+
+  local:
+    # only the docker CLI respects a manually logged-in daemon
+    useDockerCLI: true
+    # BuildKit provides an improvement on performance
+    useBuildkit: true
+
+deploy:
+  helm:
+    releases:
+      - name: unguard-mariadb
+        remoteChart: mariadb
+        repo: https://charts.bitnami.com/bitnami
+        version: "11.5.7"
+        namespace: unguard
+        createNamespace: true
+        wait: true # TODO: #22 Might be removed once we have readiness probes
+        overrides:
+          primary:
+            persistence:
+              enabled: false
+      - name: unguard
+        chartPath: ./chart
+        namespace: unguard
+        createNamespace: true
+        valuesFiles: ["./chart/values.yaml"]
+        setValueTemplates:
+          # ad-service
+          adService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_ad_service}}"
+          adService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_ad_service}}@{{.IMAGE_DIGEST_unguard_ad_service}}"
+          # envoy-proxy
+          envoyProxy.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_envoy_proxy}}"
+          envoyProxy.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_envoy_proxy}}@{{.IMAGE_DIGEST_unguard_envoy_proxy}}"
+          # frontend
+          frontend.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_frontend}}"
+          frontend.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_frontend}}@{{.IMAGE_DIGEST_unguard_frontend}}"
+          # microblog-service
+          microblogService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_microblog_service }}"
+          microblogService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_microblog_service }}@{{.IMAGE_DIGEST_unguard_microblog_service }}"
+          # proxy-service
+          proxyService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_proxy_service}}"
+          proxyService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_proxy_service}}@{{.IMAGE_DIGEST_unguard_proxy_service}}"
+          # user-simulator
+          userSimulator.cronJob.jobTemplate.container.image.repository: "{{.IMAGE_REPO_unguard_user_simulator}}"
+          userSimulator.cronJob.jobTemplate.container.image.tag: "{{.IMAGE_TAG_unguard_user_simulator}}@{{.IMAGE_DIGEST_unguard_user_simulator}}"
+          # user-auth-service
+          userAuthService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_user_auth_service}}"
+          userAuthService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_user_auth_service}}@{{.IMAGE_DIGEST_unguard_user_auth_service}}"
+          # membership-service
+          membershipService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_membership_service}}"
+          membershipService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_membership_service}}@{{.IMAGE_DIGEST_unguard_membership_service}}"
+          # status-service
+          statusService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_status_service}}"
+          statusService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_status_service}}@{{.IMAGE_DIGEST_unguard_status_service}}"
+          # profile-service
+          profileService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_profile_service}}"
+          profileService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_profile_service}}@{{.IMAGE_DIGEST_unguard_profile_service}}"
+          # malicious-load-generator
+          maliciousLoadGenerator.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_malicious_load_generator}}"
+          maliciousLoadGenerator.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_malicious_load_generator}}@{{.IMAGE_DIGEST_unguard_malicious_load_generator}}"
+          # like-service
+          likeService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_like_service}}"
+          likeService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_like_service}}@{{.IMAGE_DIGEST_unguard_like_service}}"
+          # payment-service
+          paymentService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_payment_service}}"
+          paymentService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_payment_service}}@{{.IMAGE_DIGEST_unguard_payment_service}}"
+
+        setValues:
+          # ad-service
+          adService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # envoy-proxy
+          envoyProxy.cronJob.jobTemplate.container.image.pullPolicy: "IfNotPresent"
+          # frontend
+          frontend.deployment.container.image.pullPolicy: "IfNotPresent"
+          # microblog-service
+          microblogService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # proxy-service
+          proxyService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # user-simulator
+          userSimulator.cronJob.jobTemplate.container.image.pullPolicy: "IfNotPresent"
+          # user-auth-service
+          userAuthService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # membership-service
+          membershipService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # status-service
+          statusService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # profile-service
+          profileService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # like-service
+          likeService.deployment.container.image.pullPolicy: "IfNotPresent"
+          # payment-service
+          paymentService.deployment.container.image.pullPolicy: "IfNotPresent"
+
+profiles:
+  - name: jib
+    patches:
+      - op: add
+        path: /build/artifacts/2/jib
+        value: { }
+
+  - name: tracing
+    patches:
+      - op: add
+        path: /deploy/helm/releases/1/valuesFiles/-
+        value: "./chart/tracing.yaml"
+
+  - name: aws
+    # automatic regex-based activation would conflict with
+    # aws profiles that inherit from this skaffold.yaml file
+    # activation: [{ kubeContext: arn:aws:eks:* }]
+    patches:
+      - op: add
+        path: /deploy/helm/releases/1/valuesFiles/-
+        value: "./chart/aws.yaml"
+
+  - name: malicious-load-generator
+    patches:
+      - op: add
+        path: /deploy/helm/releases/1/setValues/maliciousLoadGenerator.enabled
+        value: "true"

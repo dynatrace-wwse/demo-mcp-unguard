@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "es2015",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "strict": false,
+    "pretty": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowUnreachableCode": false,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,
+    "allowJs": false,
+    "checkJs": false
+  },
+  "files": [
+    "./default-user-sim.perf.ts"
+  ]
+}
