@@ -19,5 +19,5 @@ ___
 </p>
 
 Ready to learn how to create an enablement using codespaces? 
-## [👨‍🏫 Learn how to create enablements in Codespaces!](https://dynatrace-wwse.github.io/enablement-mcp-demo)
+## [👨‍🏫 Learn how the Dynatrace MCP Server can help you be more efficient!](https://dynatrace-wwse.github.io/enablement-mcp-demo)
 
