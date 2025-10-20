@@ -5,9 +5,9 @@ source .devcontainer/util/source_framework.sh
 
 setUpTerminal
 
-startKindCluster
+#startKindCluster
 
-installK9s
+#installK9s
 
 #TODO: BeforeGoLive: uncomment this. This is only needed for professors to have the Mkdocs live in the container
 
@@ -15,7 +15,7 @@ installK9s
 
 
 # Dynatrace Operator can be deployed automatically
-dynatraceDeployOperator
+#dynatraceDeployOperator
 
 # You can deploy CNFS or AppOnly
 #deployCloudNative
