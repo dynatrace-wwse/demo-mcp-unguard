@@ -15,7 +15,7 @@ ___
 
 
 <p align="center">
-<img src="docs/img/mcp.png" alt="Alt text" width="400"/>
+<img src="docs/img/fixing_code.png" alt="Alt text" width="400"/>
 </p>
 
 Ready to learn how to create an enablement using codespaces? 
