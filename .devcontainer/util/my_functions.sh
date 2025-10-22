@@ -75,3 +75,27 @@ undeployUnguard() {
 }
 
 
+selectMcpServer(){
+  printInfoSection "🧠 Please select the MCP Server you want to connect to:"
+  printInfo "1. playground"
+  printInfo "2. demo.live"
+  printInfo "3. tacocorp"
+  read -p "Enter your choice (1-3): " choice
+  case $choice in
+    1)
+      MCP_SERVER="playground"
+      ;;
+    2)
+      MCP_SERVER="demo.live"
+      ;;
+    3)
+      MCP_SERVER="tacocorp"
+      ;;
+    *)
+      echo "Invalid choice. Defaulting to playground."
+      MCP_SERVER="playground"
+      ;;
+  esac
+  export MCP_SERVER
+  echo "Selected MCP Server: $MCP_SERVER"
+}

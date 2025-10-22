@@ -27,7 +27,14 @@ Which information can I get from my dynatrace environment? which actions can I e
 when it finishes then ask to tackle another vulnerabilit instead of building the project
 
 
+what tools are installed in dynatrace mcp server and what can I do with them? give me a comprehensive list.
 
+Do I have security vulnerabilities in my environment and do they affect the code in my IDE?
+
+yes fix the first two ones please
+
+
+No, please make an executive summary of the fixes adding the impacted infrastructure.
 
 
 
