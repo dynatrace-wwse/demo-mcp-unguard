@@ -1,10 +1,10 @@
 {
 	"servers": {
 		"dynatrace-mcp-server": {
-            "url": "https://${MCP_SERVER}-mcp-server.whydevslovedynatrace.com",
+            "url": "https://${env:MCP_SERVER}-mcp-server.whydevslovedynatrace.com",
             "type": "http",
 			"headers": {
-        	"Authorization": "Basic ${MCP_AUTH_TOKEN}"
+        	"Authorization": "Basic ${env:MCP_AUTH_TOKEN}"
       		}
 		}
 	}
