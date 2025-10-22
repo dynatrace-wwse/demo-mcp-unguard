@@ -75,6 +75,37 @@ undeployUnguard() {
 }
 
 
+writeMcpJsonConfig(){
+  local mcp_json_path="${REPO_PATH}/.vscode/mcp.json"
+  
+  printInfo "Writing MCP configuration to $mcp_json_path"
+  
+  # Create .vscode directory if it doesn't exist
+  mkdir -p "${REPO_PATH}/.vscode"
+  
+  # Write the mcp.json file with the selected server configuration
+  cat > "$mcp_json_path" <<EOF
+{
+	"servers": {
+		"dynatrace-mcp-server": {
+            "url": "https://${MCP_SERVER}-mcp-server.whydevslovedynatrace.com",
+            "type": "http",
+			"headers": {
+        	"Authorization": "Basic ${MCP_AUTH_TOKEN}"
+      		}
+		}
+	}
+}
+EOF
+
+  if [ $? -eq 0 ]; then
+    printInfo "✅ MCP configuration file written successfully"
+  else
+    printWarn "❌ Failed to write MCP configuration file"
+    return 1
+  fi
+}
+
 selectMcpServer(){
   printInfoSection "🧠 Please select the MCP Server you want to connect to:"
   printInfo "1. playground (wkf10640)"
@@ -107,6 +138,9 @@ selectMcpServer(){
 
   MCP_AUTH_TOKEN=$(printf "%s" "devlove:$MCP_PASSWORD" | base64)
   export MCP_AUTH_TOKEN
+
+  # Write the configuration to mcp.json
+  writeMcpJsonConfig
 
   printInfoSection "$MCP_SERVER  selected, click on start MCP Server to start the connection. " 
 

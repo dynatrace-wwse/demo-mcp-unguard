@@ -8,7 +8,7 @@ source .devcontainer/util/source_framework.sh
 
 
 
-selectMcpServer
+#selectMcpServer
 
 
 
