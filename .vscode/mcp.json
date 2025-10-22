@@ -1,8 +1,11 @@
 {
 	"servers": {
-		"playground-mcp-server": {
-            "url": "https://playground-mcp-server.whydevslovedynatrace.com",
-            "type": "http"
+		"dynatrace-mcp-server": {
+            "url": "https://${MCP_SERVER}-mcp-server.whydevslovedynatrace.com",
+            "type": "http",
+			"headers": {
+        	"Authorization": "Basic ${MCP_AUTH_TOKEN}"
+      		}
 		}
 	}
 }

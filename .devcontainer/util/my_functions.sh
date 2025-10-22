@@ -77,10 +77,11 @@ undeployUnguard() {
 
 selectMcpServer(){
   printInfoSection "🧠 Please select the MCP Server you want to connect to:"
-  printInfo "1. playground"
-  printInfo "2. demo.live"
-  printInfo "3. tacocorp"
-  read -p "Enter your choice (1-3): " choice
+  printInfo "1. playground (wkf10640)"
+  printInfo "2. demo.live (guu84124)"
+  printInfo "3. tacocorp (bwm98081)"
+  printf "Enter your choice (1-3): "
+  read choice
   case $choice in
     1)
       MCP_SERVER="playground"
@@ -97,5 +98,16 @@ selectMcpServer(){
       ;;
   esac
   export MCP_SERVER
-  echo "Selected MCP Server: $MCP_SERVER"
+
+  printInfo "Selected MCP Server: $MCP_SERVER"
+  
+  printf "Enter password for $MCP_SERVER: "
+  read -s MCP_PASSWORD
+  echo ""  # New line after password input
+
+  MCP_AUTH_TOKEN=$(printf "%s" "devlove:$MCP_PASSWORD" | base64)
+  export MCP_AUTH_TOKEN
+
+  printInfoSection "$MCP_SERVER  selected, click on start MCP Server to start the connection. " 
+
 }
