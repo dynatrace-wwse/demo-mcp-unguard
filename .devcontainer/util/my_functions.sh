@@ -142,6 +142,8 @@ selectMcpServer(){
   # Write the configuration to mcp.json
   writeMcpJsonConfig
 
-  printInfoSection "$MCP_SERVER  selected, click on start MCP Server to start the connection. " 
+  printInfoSection "$MCP_SERVER selected, the VS Code agent should start the MPC server automatically"
+  printInfo "you can alternatively go to 'Extensions > MCP Servers installed > dynatrace-mcp-server' and start it."
+  printInfo "If you want to connect to another MCP server, just type the function 'selectMcpServer'"
 
 }

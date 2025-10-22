@@ -4,11 +4,10 @@ repo_url: "https://github.com/dynatrace-wwse/demo-mcp-unguard"
 nav:
   - '1. About': index.md
   - '2. Getting started': 2-getting-started.md
-  - '3. Codespaces': 3-codespaces.md
-  - '4. Content': 4-content.md
-  - '5. Cleanup': cleanup.md
-  - '6. Resources': resources.md
-  - "7. What's next?": whats-next.md
+  - '3. Demo': 3-demo.md
+  - '4. Cleanup': cleanup.md
+  - '5. Resources': resources.md
+  - "6. What's next?": whats-next.md
 theme:
   name: material
   custom_dir: docs/overrides
