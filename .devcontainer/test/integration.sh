@@ -4,7 +4,6 @@ source .devcontainer/util/source_framework.sh
 
 printInfoSection "Running integration Tests for $RepositoryName"
 
-#TODO: In here you add your assertions
 #assertRunningPod dynatrace operator
 
 #assertRunningPod dynatrace activegate
@@ -14,3 +13,4 @@ printInfoSection "Running integration Tests for $RepositoryName"
 #assertRunningPod todoapp todoapp
 
 #assertRunningApp 30100
+printInfoSection "No connection will be tested to the MCP Server for the time being"
