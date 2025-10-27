@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#step-1-connect-to-the-mcp-server" class="md-skip">
+        <a href="#step-1-connect-to-the-mcp-server-web" class="md-skip">
           Skip to content
         </a>
       
@@ -348,9 +348,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-connect-to-the-mcp-server" class="md-nav__link">
+  <a href="#step-1-connect-to-the-mcp-server-web" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Connect to the MCP Server
+      Step 1: Connect to the MCP Server (Web)
     </span>
   </a>
   
@@ -467,9 +467,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-connect-to-the-mcp-server" class="md-nav__link">
+  <a href="#step-1-connect-to-the-mcp-server-web" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Connect to the MCP Server
+      Step 1: Connect to the MCP Server (Web)
     </span>
   </a>
   
@@ -526,11 +526,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Seamless operation within GitHub Codespaces, as a remote container, or locally via Docker.</li>
 <li>Cross-compilation support for both AMD and ARM architectures, ensuring broad compatibility.</li>
 <li>Adherence to industry standards and best practices to optimize the developer experience.</li>
+<li>Real-time observability of Kubernetes clusters using <a href="https://dynatrace-wwse.github.io/codespaces-framework/dynatrace-integration/">Dynatrace Full-Stack monitoring</a>.</li>
+<li>Integrated <a href="https://dynatrace-wwse.github.io/codespaces-framework/dynatrace-integration/">Dynatrace MCP Server</a> to deliver deep, actionable insights across distributed systems.</li>
 </ul>
-<p>To learn more about the Dynatrace Enablement Framework and how it can enhance your development workflow, please refer to the <a href="https://dynatrace-wwse.github.io/codespaces-framework">official documentation</a></p>
+<p>To learn more about the Dynatrace Enablement Framework and how it can enhance your development workflow, please refer to the <a href="https://dynatrace-wwse.github.io/codespaces-framework">official documentation</a>      </p>
 </details>
 <p>Welcome! This guide will walk you through connecting to the MCP server and starting your analysis with the AI agent.</p>
-<h2 id="step-1-connect-to-the-mcp-server">Step 1: Connect to the MCP Server<a class="headerlink" href="#step-1-connect-to-the-mcp-server" title="Permanent link">#</a></h2>
+<h2 id="step-1-connect-to-the-mcp-server-web">Step 1: Connect to the MCP Server (Web)<a class="headerlink" href="#step-1-connect-to-the-mcp-server-web" title="Permanent link">#</a></h2>
 <p>Once you have your environment ready, the first step is to connect to the MCP server.</p>
 <div class="admonition tip">
 <p class="admonition-title">Select the MCP Server</p>
@@ -557,28 +559,93 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><strong>Davis CoPilot</strong>: Get intelligent recommendations and problem analysis</li>
 <li><strong>Observability Data</strong>: Access real-time monitoring data and application behavior</li>
 </ul>
-<div class="admonition example">
-<p class="admonition-title">What You Can Ask</p>
-<p>Try asking questions like:</p>
+<div class="admonition question">
+<p class="admonition-title">Practical examples based on the Unguard application context</p>
 <ul>
-<li>"Which information can I get from my Dynatrace environment? Which actions can I execute?"</li>
-<li>"Are there security vulnerabilities impacting my code?"<ul>
-<li>"If yes, tell the Agent to fix them"</li>
-<li>Once the fixes have been applied, tell the agent to generate a summary and add the impacted infrastructure.</li>
+<li>
+<p><strong>🔍 Security &amp; Vulnerability Analysis</strong></p>
+<ul>
+<li>"Do I have security vulnerabilities in my code?"</li>
+<li>"Show me all SQL injection vulnerabilities in the membership-service"</li>
+<li>"Are there any SSRF vulnerabilities in the proxy-service?"</li>
+<li>"Check for JWT key confusion issues in the user-auth-service"</li>
+<li>"List all command injection vulnerabilities across all services"</li>
 </ul>
 </li>
-<li>"What services are deployed in this application?"</li>
-<li>"Show me recent errors in the logs"</li>
-<li>"What are the current problems detected by Dynatrace?"</li>
-<li>"Analyze the performance of the frontend service"</li>
-<li>"Explain the architecture of this application"</li>
+<li>
+<p><strong>📊 Performance &amp; Monitoring</strong></p>
+<ul>
+<li>"What are the current performance metrics for the frontend service?"</li>
+<li>"Show me response times for the ad-service over the last hour"</li>
+<li>"Are there any slow database queries in the microblog-service?"</li>
+<li>"What's the memory usage trend for the payment-service?"</li>
+<li>"Show me error rates for all services in the last 24 hours"</li>
+</ul>
+</li>
+<li>
+<p><strong>🚨 Problem Detection &amp; Analysis</strong></p>
+<ul>
+<li>"What problems are currently detected in my Dynatrace environment?"</li>
+<li>"Are there any critical issues affecting the user experience?"</li>
+<li>"Show me recent error logs from the like-service"</li>
+<li>"What are the top 5 problems by impact score?"</li>
+<li>"Are there any service outages or failures?"</li>
+</ul>
+</li>
+<li>
+<p><strong>🏗️ Infrastructure &amp; Deployment</strong></p>
+<ul>
+<li>"What services are currently deployed in my environment?"</li>
+<li>"Show me the architecture of the Unguard application"</li>
+<li>"Are all microservices healthy and running?"</li>
+<li>"What's the deployment status of the malicious-load-generator?"</li>
+<li>"Show me Kubernetes pod status for all services"</li>
+</ul>
+</li>
+<li>
+<p><strong>📝 Code Analysis &amp; Recommendations</strong></p>
+<ul>
+<li>"Analyze the security of the profile-service Java code"</li>
+<li>"Review the PHP code in like-service for vulnerabilities"</li>
+<li>"Check the Python payment-service for security issues"</li>
+<li>"Analyze the Go status-service for potential problems"</li>
+<li>"Review the .NET membership-service code quality"</li>
+</ul>
+</li>
+<li>
+<p><strong>🔗 Correlation &amp; Insights</strong></p>
+<ul>
+<li>"Correlate security vulnerabilities with runtime problems"</li>
+<li>"Show me how code vulnerabilities affect application performance"</li>
+<li>"Link security findings with observability data"</li>
+<li>"Connect code issues to user experience problems"</li>
+</ul>
+</li>
+<li>
+<p><strong>📋 Remediation &amp; Fixes</strong></p>
+<ul>
+<li>"Generate a security remediation summary for the fixes"</li>
+<li>"Show me the changes needed to fix SQL injection in profile-service"</li>
+<li>"Create an executive summary of security fixes with impacted infrastructure"</li>
+<li>"Provide step-by-step remediation for the top vulnerabilities"</li>
+</ul>
+</li>
+<li>
+<p><strong>🛠️ Tool &amp; Capability Discovery</strong></p>
+<ul>
+<li>"What tools are installed in the Dynatrace MCP server?"</li>
+<li>"What can I do with the available MCP tools?"</li>
+<li>"Show me all available Dynatrace integrations"</li>
+<li>"What monitoring capabilities do I have access to?"</li>
+</ul>
+</li>
 </ul>
 </div>
 <h2 id="step-3-explore-and-analyze">Step 3: Explore and Analyze<a class="headerlink" href="#step-3-explore-and-analyze" title="Permanent link">#</a></h2>
 <p>You're all set! Start exploring the codebase and monitoring data. The agent will help you understand the application, identify issues, and get insights from Dynatrace.</p>
 <p>You'll find the source code of the unguard application in the folder <code>unguard</code>. The original source code is hosted here: https://github.com/dynatrace-oss/unguard</p>
 <div class="admonition tip">
-<p class="admonition-title">Connet to another Dynatrace environment</p>
+<p class="admonition-title">Connect to another Dynatrace environment</p>
 <p>If you want to conect to another Dynatrace Environment/MCP Server, just type in the terminal <code>selectMcpServer</code></p>
 </div>
 <div class="grid cards">
