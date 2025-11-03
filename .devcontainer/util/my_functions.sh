@@ -107,6 +107,13 @@ EOF
 }
 
 selectMcpServer(){
+  printWarn "The COE MCP Remote Servers have been decommisioned since SSO is available for you to use, Github Codespaces also supported!"
+  printInfo "More information here: https://dynatrace-wwse.github.io/codespaces-framework/dynatrace-integration/#mcp-server-integration"
+  printInfoSection "Calling 'selectDemoEnvironment' instead"
+  selectDemoEnvironment
+}
+
+selectMcpServer_deprecated(){
   printInfoSection "🧠 Please select the MCP Server you want to connect to:"
   printInfo "1. playground (wkf10640)"
   printInfo "2. demo.live (guu84124)"
