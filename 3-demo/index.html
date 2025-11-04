@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#step-1-connect-to-the-mcp-server-web" class="md-skip">
+        <a href="#step-1connecting-the-mcp-server" class="md-skip">
           Skip to content
         </a>
       
@@ -346,9 +346,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-connect-to-the-mcp-server-web" class="md-nav__link">
+  <a href="#step-1connecting-the-mcp-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Connect to the MCP Server (Web)
+      Step 1:Connecting the MCP Server
     </span>
   </a>
   
@@ -465,9 +465,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-connect-to-the-mcp-server-web" class="md-nav__link">
+  <a href="#step-1connecting-the-mcp-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Connect to the MCP Server (Web)
+      Step 1:Connecting the MCP Server
     </span>
   </a>
   
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <details class="example">
-<summary><a href="https://dynatrace-wwse.github.io/codespaces-framework"><img alt="dt-badge" src="https://img.shields.io/badge/powered_by-DT_enablement-8A2BE2?logo=dynatrace" /></a></summary>
+<summary><a href="https://dynatrace-wwse.github.io/codespaces-framework"><img alt="dt-badge" src="https://img.shields.io/badge/Powered_by-DT_Enablement-8A2BE2?logo=dynatrace" /></a></summary>
 <p>This Codespace leverages the Dynatrace Enablement Framework, providing a robust and flexible development environment. Key features include:</p>
 <ul>
 <li>Seamless operation within GitHub Codespaces, as a remote container, or locally via Docker.</li>
@@ -530,23 +530,29 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>To learn more about the Dynatrace Enablement Framework and how it can enhance your development workflow, please refer to the <a href="https://dynatrace-wwse.github.io/codespaces-framework">official documentation</a>      </p>
 </details>
 <p>Welcome! This guide will walk you through connecting to the MCP server and starting your analysis with the AI agent.</p>
-<h2 id="step-1-connect-to-the-mcp-server-web">Step 1: Connect to the MCP Server (Web)<a class="headerlink" href="#step-1-connect-to-the-mcp-server-web" title="Permanent link">#</a></h2>
-<p>Once you have your environment ready, the first step is to connect to the MCP server.</p>
-<div class="admonition tip">
-<p class="admonition-title">Select the MCP Server</p>
-<p>In your terminal, type the following command:
-<div class="highlight"><pre><span></span><code>selectMcpServer
-</code></pre></div></p>
-</div>
-<p>This command will:</p>
-<ol>
-<li>Prompt you to select the MCP server you want to connect to</li>
-<li>Ask for your MCP server password (provided by your instructor)</li>
-<li>Establish a connection to the MCP Server so the agent can interact with it</li>
-</ol>
+<h2 id="step-1connecting-the-mcp-server">Step 1:Connecting the MCP Server<a class="headerlink" href="#step-1connecting-the-mcp-server" title="Permanent link">#</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Steps to establish an MCP Server Connection</p>
+<ul>
+<li>On the IDE go to the left pane &gt; <code>Extensions &gt; MCP Servers Installed  &gt; dynatrace-mcp-server</code></li>
+<li>Open dynatrace-mcp-server click on the configuration wheel &gt; Start server</li>
+<li>The server should start, it'll read the environment file located in .devcontainer/runlocal/.env and will read the variable DT_ENVIRONMENT</li>
+<li>In the Server output (click on Show Output in the configuration wheel )</li>
+<li>A link for the SSO authentication should open automatically (if not then click on it).</li>
+</ul>
 <div class="admonition success">
-<p class="admonition-title">Connection Established</p>
-<p>You can verify the connection to the MCP Server on the left pane in 'Extensions &gt;  MCP Servers - installed &gt; dynatrace-mcp-server'.</p>
+<ul>
+<li>you should see a prompt like "✅ Successfully retrieved token from SSO!" now let the agents communicate with the environment.</li>
+</ul>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Connect to another environment</p>
+<ul>
+<li>There is a comfort function that helps you set the DT_ENVIRONMENT variable called <code>selectEnvironment</code>.</li>
+<li>Type <code>selectEnvironment</code> in the terminal, select an environment or enter your own environment.</li>
+<li>Restart the MCP Server by going to <code>Extensions &gt; MCP Servers Installed  &gt; dynatrace-mcp-server &gt; restart server</code></li>
+</ul>
 </div>
 <h2 id="step-2-start-chatting-with-the-agent">Step 2: Start Chatting with the Agent<a class="headerlink" href="#step-2-start-chatting-with-the-agent" title="Permanent link">#</a></h2>
 <p>After successfully connecting to the MCP server, you can now interact with the AI agent!</p>
@@ -557,6 +563,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><strong>Davis CoPilot</strong>: Get intelligent recommendations and problem analysis</li>
 <li><strong>Observability Data</strong>: Access real-time monitoring data and application behavior</li>
 </ul>
+<div class="admonition info">
+<p class="admonition-title">Ask the agent what can you do with the MCP Server</p>
+<p>A very useful question is to ask the agent what can you do with Dynatrace's MCP Server. The MCP Server is pulling from <code>latest</code> meaning every week you'll get more features. In order to check the latest stand, just ask the agent and it'll give you a comprenhensive list of what you can do depending on the tools installed at that time. </p>
+</div>
 <div class="admonition question">
 <p class="admonition-title">Practical examples based on the Unguard application context</p>
 <ul>
