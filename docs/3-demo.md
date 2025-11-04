@@ -4,24 +4,25 @@
 
 Welcome! This guide will walk you through connecting to the MCP server and starting your analysis with the AI agent.
 
-## Step 1: Connect to the MCP Server (Web)
+## Step 1:Connecting the MCP Server 
 
-Once you have your environment ready, the first step is to connect to the MCP server.
+!!! info "Steps to establish an MCP Server Connection"
+    - On the IDE go to the left pane > `Extensions > MCP Servers Installed  > dynatrace-mcp-server`
+    - Open dynatrace-mcp-server click on the configuration wheel > Start server
+    - The server should start, it'll read the environment file located in .devcontainer/runlocal/.env and will read the variable DT_ENVIRONMENT
+    - In the Server output (click on Show Output in the configuration wheel )
+    - A link for the SSO authentication should open automatically (if not then click on it).
+    !!! success ""
+        - you should see a prompt like "✅ Successfully retrieved token from SSO!" now let the agents communicate with the environment.
+         
 
-!!! tip "Select the MCP Server"
-    In your terminal, type the following command:
-    ```bash
-    selectMcpServer
-    ```
 
-This command will:
+!!! question "Connect to another environment"
+    - There is a comfort function that helps you set the DT_ENVIRONMENT variable called `selectEnvironment`.
+    - Type `selectEnvironment` in the terminal, select an environment or enter your own environment.
+    - Restart the MCP Server by going to `Extensions > MCP Servers Installed  > dynatrace-mcp-server > restart server`
 
-1. Prompt you to select the MCP server you want to connect to
-2. Ask for your MCP server password (provided by your instructor)
-3. Establish a connection to the MCP Server so the agent can interact with it
 
-!!! success "Connection Established"
-    You can verify the connection to the MCP Server on the left pane in 'Extensions >  MCP Servers - installed > dynatrace-mcp-server'.
 
 ## Step 2: Start Chatting with the Agent
 
@@ -33,6 +34,10 @@ The agent has access to:
 - **Dynatrace Insights**: Query logs, metrics, traces, and events from the monitoring tenant
 - **Davis CoPilot**: Get intelligent recommendations and problem analysis
 - **Observability Data**: Access real-time monitoring data and application behavior
+
+!!! info "Ask the agent what can you do with the MCP Server"
+    A very useful question is to ask the agent what can you do with Dynatrace's MCP Server. The MCP Server is pulling from `latest` meaning every week you'll get more features. In order to check the latest stand, just ask the agent and it'll give you a comprenhensive list of what you can do depending on the tools installed at that time. 
+
 
 !!! Question "Practical examples based on the Unguard application context"
     - **🔍 Security & Vulnerability Analysis**
