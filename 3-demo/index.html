@@ -654,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>You'll find the source code of the unguard application in the folder <code>unguard</code>. The original source code is hosted here: https://github.com/dynatrace-oss/unguard</p>
 <div class="admonition tip">
 <p class="admonition-title">Connect to another Dynatrace environment</p>
-<p>If you want to conect to another Dynatrace Environment/MCP Server, just type in the terminal <code>selectMcpServer</code></p>
+<p>If you want to conect to another Dynatrace Environment, just type in the terminal <code>selectEnvironment</code>, this function will set and reload the environment variable <code>DT_ENVIRONMENT</code> for you and reload it in the file <code>.devcontainer/runlocal/.env</code> with the environment of your choice. Remember to reload/restart the MCP Server so it points to the correct environment.</p>
 </div>
 <div class="grid cards">
 <ul>
