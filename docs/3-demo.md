@@ -9,7 +9,7 @@ Welcome! This guide will walk you through connecting to the MCP server and start
 !!! info "Steps to establish an MCP Server Connection"
     - On the IDE go to the left pane > `Extensions > MCP Servers Installed  > dynatrace-mcp-server`
     - Open dynatrace-mcp-server click on the configuration wheel > Start server
-    - The server should start, it'll read the environment file located in .devcontainer/runlocal/.env and will read the variable DT_ENVIRONMENT
+    - The server should start, it'll read the environment file located in .devcontainer/.env and will read the variable DT_ENVIRONMENT
     - In the Server output (click on Show Output in the configuration wheel )
     - A link for the SSO authentication should open automatically (if not then click on it).
     !!! success ""
@@ -102,7 +102,7 @@ You'll find the source code of the unguard application in the folder `unguard`. 
 
 
 !!! tip "Connect to another Dynatrace environment"
-    If you want to conect to another Dynatrace Environment, just type in the terminal `selectEnvironment`, this function will set and reload the environment variable `DT_ENVIRONMENT` for you and reload it in the file `.devcontainer/runlocal/.env` with the environment of your choice. Remember to reload/restart the MCP Server so it points to the correct environment.
+    If you want to conect to another Dynatrace Environment, just type in the terminal `selectEnvironment`, this function will set and reload the environment variable `DT_ENVIRONMENT` for you and reload it in the file `.devcontainer/.env` with the environment of your choice. Remember to reload/restart the MCP Server so it points to the correct environment.
 
 
 <div class="grid cards" markdown>
