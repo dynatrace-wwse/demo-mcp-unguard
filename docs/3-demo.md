@@ -1,4 +1,3 @@
---8<-- "snippets/3-demo.js"
 
 --8<-- "snippets/dt-enablement.md"
 

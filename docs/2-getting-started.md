@@ -1,4 +1,3 @@
---8<-- "snippets/getting-started.js"
 
 # Getting started
 
