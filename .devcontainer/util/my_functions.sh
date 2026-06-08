@@ -13,29 +13,13 @@ customFunction(){
 }
 
 exposeUnguard(){
-  
-  getNextFreeAppPort true
-  PORT=$(getNextFreeAppPort)
-  if [[ $? -ne 0 ]]; then
-    printWarn "Application can't be deployed"
-    return 1
-  fi
-
-  #PORT=30100
-  kubectl patch service unguard-envoy-proxy --namespace=unguard --patch="{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 8080, \"nodePort\": $PORT }]}}"
-  #PORT2=30200
-  #kubectl patch service unguard-frontend --namespace=unguard --patch="{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 80, \"nodePort\": $PORT2 }]}}"
+  # Expose Unguard via nginx ingress (replaces legacy NodePort)
+  registerApp "unguard" "unguard" "unguard-envoy-proxy" 8080
 }
 
 deployUnguard(){
 
   printInfoSection "Deploying Unguard"
-  getNextFreeAppPort true
-  PORT=$(getNextFreeAppPort)
-  if [[ $? -ne 0 ]]; then
-    printWarn "Application can't be deployed, all NodePorts are busy"
-    return 1
-  fi
 
   if [[ "$ARCH" != "x86_64" ]]; then
     printWarn "This version of the Unguard only supports AMD/x86 architectures and not ARM, exiting deployment..."
@@ -59,9 +43,10 @@ deployUnguard(){
   --namespace unguard --create-namespace
 
   printInfo "Installing Unguard"
-  helm install unguard  oci://ghcr.io/dynatrace-oss/unguard/chart/unguard --version 0.12.0 --namespace unguard 
+  helm install unguard  oci://ghcr.io/dynatrace-oss/unguard/chart/unguard --version 0.12.0 --namespace unguard
 
-  kubectl patch service unguard-envoy-proxy --namespace=unguard --patch="{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 8080, \"nodePort\": $PORT }]}}"
+  waitForAllReadyPods unguard
+  exposeUnguard
 
 }
 
