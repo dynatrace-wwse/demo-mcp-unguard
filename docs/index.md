@@ -3,6 +3,12 @@
 
 # MCP-Powered Security Analysis with Unguard
 
+!!! warning "Not yet migrated to the Dynatrace Enablement App"
+    This content has not been migrated to a fully immersive, interactive and self-service training.
+    Questions or feedback? Reach out to the Center of Excellence Enablement Team via
+    [GitHub Issues](https://github.com/dynatrace-wwse/codespaces-framework/issues)
+    or the [feedback form](https://forms.office.com/r/QaCx6VAJe8).
+
 Welcome to this hands-on tutorial where you'll learn how to leverage the **Model Context Protocol (MCP)** with AI agents to analyze, detect, and remediate security vulnerabilities in a real-world application.
 
 ## 🎯 What You'll Learn
