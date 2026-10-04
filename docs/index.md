@@ -1,3 +1,12 @@
+---
+description: Use an AI agent over the Model Context Protocol to find vulnerabilities in Unguard, an intentionally insecure microservices app. Correlate them with Dynatrace runtime security findings and Davis CoPilot, and apply AI-assisted fixes.
+tags:
+  - classic
+  - mcp
+  - security
+  - ai
+---
+
 
 --8<-- "snippets/disclaimer.md"
 
